@@ -16,4 +16,27 @@
 */
 ;
 (function ($, window, undefined) {
+	var Lightbox, 
+		Document = window.document,
+		Defaults = {}
+	;
+	
+	Defaults = (function() {
+		function Defaults() {
+			// animation
+			this.lightEffect = 'fadeIn';
+
+			// callbacks
+			this.onLoad = function() {};
+			this.onClose: function() {};
+
+			// style
+			this.classPrefix: 'lb';
+			this.zIndex: 999;
+			this.centered: true;
+			this.modalCSS: {top: '40px'};
+			this.overlayCSS: {background: 'black', opacity: .3};
+		}
+		return Defaults;
+  })();
 }(jQuery, window));
