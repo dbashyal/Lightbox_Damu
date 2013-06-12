@@ -28,12 +28,14 @@
 		Lightbox.prototype.init = function() {
             this.container();
             this.overlay();
+            this.close();
 		}
 
 		Lightbox.prototype.container = function() {
 			if($('.lightbox_html_container').length < 1){
-				$('body').append('<div class="lightbox_html_container" style="background: #000;padding: 10px;display: none;"/>');
+				$('body').append('<div class="lightbox_html_container" style="background: #fff;padding: 10px;display: none;"><div class="lightbox_damu_wrapper"/></div>');
 				$('.lightbox_html_container').prepend('<span class="close" style="display: block;text-align: center;border: 1px solid #dedede;padding: 0;line-height: 1.5;font-size: 15px;font-weight: bold;width: 20px;cursor: pointer;position: absolute;top: -5px;right: -5px;background: #fff;">X</span>');
+                $('.lightbox_html_container').css(this.options.modalCSS);
 			}
 		};
 		
@@ -45,13 +47,27 @@
 			}
 		};
 
+        Lightbox.prototype.open = function() {
+            $('.damu_overlay').show();
+            $('.lightbox_html_container').show();
+            Lightbox.prototype.close();
+        }
+
+        Lightbox.prototype.close = function() {
+              $('.lightbox_html_container .close').click(function(){
+                  $('.damu_overlay').hide();
+                  $('.lightbox_html_container').hide();
+              });
+        }
+
 		Lightbox.prototype.enable = function() {
 			this.options.el.click(function(){
 				var $html = $(this).html();
-				$('.lightbox_damu_wrapper').html($html);
+				$('.lightbox_damu_wrapper').html('<div class="lightup_damu">'+$html+'</div>');
+                Lightbox.prototype.open();
 			});
 		};
-		
+
 		return Lightbox;
 	})();
 	
@@ -73,9 +89,7 @@
 
 		// style
 		classPrefix: 'lb',
-		zIndex: 999,
 		centered: true,
-		modalCSS: {top: '40px'},
 		overlayCSS: {
             top: 0,
             left: 0,
@@ -85,7 +99,11 @@
             background: '#000',
             position: 'absolute',
             width: '100%',
-            zIndex: (this.zIndex + 2)
+            zIndex: 1001
+        },
+		modalCSS: {
+            position: 'absolute',
+            zIndex: 1002
         }
 	}
 }(jQuery, window));
