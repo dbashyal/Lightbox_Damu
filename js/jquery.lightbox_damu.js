@@ -116,6 +116,7 @@
             opacity: .3,
             background: '#000',
             position: 'absolute',
+            height: '100%',
             width: '100%',
             zIndex: 1001
         },
