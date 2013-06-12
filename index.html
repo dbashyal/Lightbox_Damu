@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+	<title>Lightbox Damu</title>
+
+	<meta name="description" lang="en" content="Lightbox Damu." />
+	<meta name="author" content="Damu">
+
+	<meta name="viewport" content="width=device-width">
+
+	<link rel="shortcut icon" type="image/ico" href="images/favicon.ico" />	
+	<link rel="stylesheet" href="css/screen.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/lightbox.css" type="text/css" media="screen" />
+</head>
+<body>
+
+<div id="content">
+	<span class="light">test</span>
+</div>
+
+<script src="js/jquery-1.7.2.min.js"></script>
+<script src="js/jquery-ui-1.8.18.custom.min.js"></script>
+<script src="js/jquery.smooth-scroll.min.js"></script>
+<script src="js/jquery.lightbox_damu.js"></script>
+
+<script>
+  jQuery(document).ready(function($) {
+      $('a').smoothScroll({
+        speed: 1000,
+        easing: 'easeInOutCubic'
+      });
+	  
+	  $('.light').lightbox_damu();
+  });
+</script>
+</body>
+</html>
