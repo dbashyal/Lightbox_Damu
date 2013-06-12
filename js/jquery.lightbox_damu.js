@@ -26,12 +26,25 @@
 		}
 
 		Lightbox.prototype.init = function() {
+            this.container();
+            this.overlay();
+		}
+
+		Lightbox.prototype.container = function() {
 			if($('.lightbox_html_container').length < 1){
-				$('body').append('<div class="lightbox_html_container" style="background: #FFF;padding: 10px;display: none;"><div class="lightbox_damu_wrapper"/></div>');
+				$('body').append('<div class="lightbox_html_container" style="background: #000;padding: 10px;display: none;"/>');
 				$('.lightbox_html_container').prepend('<span class="close" style="display: block;text-align: center;border: 1px solid #dedede;padding: 0;line-height: 1.5;font-size: 15px;font-weight: bold;width: 20px;cursor: pointer;position: absolute;top: -5px;right: -5px;background: #fff;">X</span>');
 			}
 		};
 		
+		Lightbox.prototype.overlay = function() {
+			if($('.damu_overlay').length < 1){
+                var $overlay = $('<div class="damu_overlay '+this.options.classPrefix+'_overlay" style="display: none;"/>');
+                $overlay.css(this.options.overlayCSS);
+                $('body').append($overlay);
+			}
+		};
+
 		Lightbox.prototype.enable = function() {
 			this.options.el.click(function(){
 				var $html = $(this).html();
@@ -63,6 +76,16 @@
 		zIndex: 999,
 		centered: true,
 		modalCSS: {top: '40px'},
-		overlayCSS: {background: '#000', opacity: .3}
+		overlayCSS: {
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            opacity: .3,
+            background: '#000',
+            position: 'absolute',
+            width: '100%',
+            zIndex: (this.zIndex + 2)
+        }
 	}
 }(jQuery, window));
