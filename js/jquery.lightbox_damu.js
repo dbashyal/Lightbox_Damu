@@ -28,7 +28,6 @@
 		Lightbox.prototype.init = function() {
             this.container();
             this.overlay();
-            this.close();
 		}
 
 		Lightbox.prototype.container = function() {
@@ -39,6 +38,22 @@
 			}
 		};
 		
+		Lightbox.prototype.center = function() {
+            var $container = $('.lightbox_html_container');
+            var width = $container.width();
+            var height = $container.height();
+            var sWidth = $(window).width();
+            var sHeight = $(window).height();
+
+            if(width < sWidth){
+                $container.css({left: ((sWidth - width)/2)});
+            }
+
+            if(height < sHeight){
+                $container.css({top: ((sHeight - height)/2)});
+            }
+		};
+
 		Lightbox.prototype.overlay = function() {
 			if($('.damu_overlay').length < 1){
                 var $overlay = $('<div class="damu_overlay '+this.options.classPrefix+'_overlay" style="display: none;"/>');
@@ -50,7 +65,8 @@
         Lightbox.prototype.open = function() {
             $('.damu_overlay').show();
             $('.lightbox_html_container').show();
-            Lightbox.prototype.close();
+            this.center();
+            this.close();
         }
 
         Lightbox.prototype.close = function() {
@@ -67,6 +83,8 @@
                 Lightbox.prototype.open();
 			});
 		};
+
+        $(window).resize(Lightbox.prototype.center).scroll(Lightbox.prototype.center);
 
 		return Lightbox;
 	})();
