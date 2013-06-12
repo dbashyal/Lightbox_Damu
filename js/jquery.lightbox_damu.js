@@ -54,7 +54,7 @@
         }
 
         Lightbox.prototype.close = function() {
-              $('.lightbox_html_container .close').click(function(){
+              $('.lightbox_html_container .close, .damu_overlay').click(function(){
                   $('.damu_overlay').hide();
                   $('.lightbox_html_container').hide();
               });
