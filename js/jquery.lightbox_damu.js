@@ -78,7 +78,7 @@
 
 		Lightbox.prototype.enable = function() {
 			this.options.el.click(function(){
-				var $html = $(this).html();
+				var $html = $('#' + ($(this).attr('id')) + '_content').html();
 				$('.lightbox_damu_wrapper').html('<div class="lightup_damu">'+$html+'</div>');
                 Lightbox.prototype.open();
 			});
